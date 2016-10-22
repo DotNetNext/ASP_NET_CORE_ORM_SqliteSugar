@@ -1,1 +1,1 @@
-%~dp0nuget.exe pack %~dp0MySqlSugarForCore.nuspec -OutputDirectory %~dp0
+%~dp0nuget.exe pack %~dp0SQLiteSugarForCore.nuspec -OutputDirectory %~dp0

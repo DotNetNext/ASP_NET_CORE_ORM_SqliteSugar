@@ -4,6 +4,7 @@
 -nowarn:CS1701
 -nowarn:CS1702
 -nowarn:CS1705
+-doc:"F:\MyOpenSource\SqliteSugarCore\SQLiteSugarForCore\src\SQLiteSugarForCore\bin\Debug\netstandard1.6\SQLiteSugarForCore.xml"
 -t:library
 -debug:full
 -nostdlib
