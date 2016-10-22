@@ -312,7 +312,7 @@ namespace SQLiteSugar
         public List<PubModel.DataTableMap> GetTableColumns(SqlSugarClient db, string tableName)
         {
             string sql = SqlSugarTool.GetTtableColumnsInfo(tableName);
-            return db.SqlQuery<PubModel.DataTableMap>(sql);
+            return new List<PubModel.DataTableMap>();
         }
 
         /// <summary>
