@@ -16,17 +16,18 @@ namespace SQLiteSugar
             UnaryExpression ue = ((UnaryExpression)exp);
             var mex = ue.Operand;
             bool? isComparisonOperator = null;
-            var isNot = ue.NodeType==ExpressionType.Not;
+            var isNot = ue.NodeType == ExpressionType.Not;
             if (mex.NodeType == ExpressionType.MemberAccess && isNot)
             {
                 isComparisonOperator = false;
             }
-            var cse = CreateSqlElements(mex, ref type, false,isComparisonOperator);
-            if (type == MemberType.Value && isNot && cse.IsIn("1","0")) 
+            var cse = CreateSqlElements(mex, ref type, false, isComparisonOperator);
+            if (type == MemberType.Value && isNot && cse.IsIn("1", "0"))
             {
                 cse = cse == "1" ? "0" : "1";
 
-            }else if (type == MemberType.None && isNot)
+            }
+            else if (type == MemberType.None && isNot)
             {
                 cse = " NOT " + cse;
             }
@@ -60,7 +61,7 @@ namespace SQLiteSugar
             var isPro = (me.Member.Name == "Length") && me.Member.DeclaringType == SqlSugarTool.StringType;
             var proIsField = false;
             if (isPro) proIsField = me.Expression != null && !UnderNodeTypeIsConstantExpression(me);
-            if (proIsField==false&&(me.Expression == null || me.Expression.NodeType != ExpressionType.Parameter))
+            if (proIsField == false && (me.Expression == null || me.Expression.NodeType != ExpressionType.Parameter))
             {
                 type = MemberType.Value;
                 object dynInv = null;
@@ -70,11 +71,12 @@ namespace SQLiteSugar
                     exp = me.Expression;
                     dynInv = CreateSqlElements(exp, ref type, true);
                 }
-                else {
+                else
+                {
                     GetMemberValue(ref exp, me, ref dynInv);
                 }
-                if (isPro)return GetProMethod(me.Member.Name,dynInv.ObjToString(),false);
-                if (dynInv!=null&&dynInv.GetType() == SqlSugarTool.BoolType)
+                if (isPro) return GetProMethod(me.Member.Name, dynInv.ObjToString(), false);
+                if (dynInv != null && dynInv.GetType() == SqlSugarTool.BoolType)
                 {
                     dynInv = ConstantBoolDictionary.Where(it => it.Type == SqlSugarTool.BoolType).Single(it => it.OldValue.ToLower() == dynInv.ObjToString().ToLower()).NewValue;
                 }
@@ -116,7 +118,7 @@ namespace SQLiteSugar
                     if (DB._mappingColumns.Any(it => it.Key == name))
                     {
                         var dbName = DB._mappingColumns.Single(it => it.Key == name).Value;
-                        name= dbName;
+                        name = dbName;
                     }
 
                 }
@@ -150,7 +152,7 @@ namespace SQLiteSugar
             {
                 var ceType = ce.Value.GetType();
                 var ceValue = ce.Value.ToString();
-                if (isComparisonOperator==true)
+                if (isComparisonOperator == true)
                 {
                     var ceNewValue = ConstantBoolDictionary.Single(it => it.Type == ceType && it.OldValue.ToLower() == ceValue.ToLower());
                     return ceNewValue.NewValue;
@@ -264,12 +266,12 @@ namespace SQLiteSugar
                 }
                 if (left.Contains("("))
                 {
-                    return string.Format(" ({0} {1} {2}) ",left, oper, right.ToSqlValue());
+                    return string.Format(" ({0} {1} {2}) ", left, oper, right.ToSqlValue());
                 }
                 else
                 {
                     var oldLeft = AddParas(ref left, parValue);
-                    return string.Format(" ({0} {1} " + SqlSugarTool.ParSymbol + "{2}) ", oldLeft, oper, left);
+                    return string.Format(" ({0} {1} " + SqlSugarTool.ParSymbol + "{2}) ", oldLeft.GetTranslationSqlName(), oper, left);
                 }
             }
             else if (isValueOperKey)
@@ -289,13 +291,13 @@ namespace SQLiteSugar
                 }
                 else
                 {
-                    var oldRight = AddParasReturnRight(parValue, ref  right);
-                    return string.Format("( " + SqlSugarTool.ParSymbol + "{0} {1} {2} )", right, oper, oldRight);
+                    var oldRight = AddParasReturnRight(parValue, ref right);
+                    return string.Format("( " + SqlSugarTool.ParSymbol + "{0} {1} {2} )", right, oper, oldRight.GetTranslationSqlName());
                 }
             }
             else if (leftType == MemberType.Value && rightType == MemberType.Value)
             {
-                var isAndOr = oper.ObjToString().IsIn("AND","OR");
+                var isAndOr = oper.ObjToString().IsIn("AND", "OR");
                 if (isAndOr)
                 {
                     return string.Format("( {0} {1} {2} )", left, oper, right);
@@ -316,8 +318,9 @@ namespace SQLiteSugar
             LambdaExpression lambda = exp as LambdaExpression;
             var expression = lambda.Body;
             MemberType EleType = MemberType.None;
-            if (expression.NodeType == ExpressionType.MemberAccess) {
-                return "("+((MemberExpression)expression).Member.Name+"=1)";
+            if (expression.NodeType == ExpressionType.MemberAccess)
+            {
+                return "(" + ((MemberExpression)expression).Member.Name + "=1)";
             }
             return CreateSqlElements(expression, ref EleType, true);
         }
