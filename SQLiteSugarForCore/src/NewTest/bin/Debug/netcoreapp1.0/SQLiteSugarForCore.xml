@@ -1682,17 +1682,17 @@
             join类型
             </summary>
         </member>
-        <member name="F:SQLiteSugar.JoinType.INNER">
+        <member name="F:SQLiteSugar.JoinType.Inner">
             <summary>
             等值连接
             </summary>
         </member>
-        <member name="F:SQLiteSugar.JoinType.LEFT">
+        <member name="F:SQLiteSugar.JoinType.Left">
             <summary>
             左外连
             </summary>
         </member>
-        <member name="F:SQLiteSugar.JoinType.RIGHT">
+        <member name="F:SQLiteSugar.JoinType.Right">
             <summary>
             右外连
             </summary>
@@ -1702,12 +1702,12 @@
             Apply类型
             </summary>
         </member>
-        <member name="F:SQLiteSugar.ApplyType.CORSS">
+        <member name="F:SQLiteSugar.ApplyType.Cross">
             <summary>
             笛卡尔积
             </summary>
         </member>
-        <member name="F:SQLiteSugar.ApplyType.OUTRE">
+        <member name="F:SQLiteSugar.ApplyType.Outer">
             <summary>
             外连
             </summary>
@@ -1717,12 +1717,12 @@
             排序类型
             </summary>
         </member>
-        <member name="F:SQLiteSugar.OrderByType.asc">
+        <member name="F:SQLiteSugar.OrderByType.Asc">
             <summary>
             升序
             </summary>
         </member>
-        <member name="F:SQLiteSugar.OrderByType.desc">
+        <member name="F:SQLiteSugar.OrderByType.Desc">
             <summary>
             降序
             </summary>
@@ -1742,12 +1742,12 @@
             解析类型
             </summary>
         </member>
-        <member name="F:SQLiteSugar.ResolveExpressType.oneT">
+        <member name="F:SQLiteSugar.ResolveExpressType.OneT">
             <summary>
             单个T
             </summary>
         </member>
-        <member name="F:SQLiteSugar.ResolveExpressType.nT">
+        <member name="F:SQLiteSugar.ResolveExpressType.NT">
             <summary>
             多个T
             </summary>

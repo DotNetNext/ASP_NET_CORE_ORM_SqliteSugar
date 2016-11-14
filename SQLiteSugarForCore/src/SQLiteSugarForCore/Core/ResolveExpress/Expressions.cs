@@ -90,7 +90,7 @@ namespace SQLiteSugar
             }
             else
             {
-                if (Type == ResolveExpressType.nT)
+                if (Type == ResolveExpressType.NT)
                 {
                     type = MemberType.Key;
                     var dbName = exp.ToString();
