@@ -155,8 +155,8 @@ namespace SQLiteSugar
         public static Queryable<T> In<T>(this Queryable<T> queryable, params object[] pkValues)
         {
             Check.Exception(pkValues == null || pkValues.Length == 0, "In.pkValues的Count不能为0");
-            var type=pkValues[0].GetType();
-            if (type!=SqlSugarTool.IntType&&type!=SqlSugarTool.GuidType&&type.FullName.IsCollectionsList())
+            var type = pkValues[0].GetType();
+            if (type != SqlSugarTool.IntType && type != SqlSugarTool.GuidType && type.FullName.IsCollectionsList())
             {
                 var newList = new List<object>();
                 foreach (var item in (IEnumerable)pkValues[0])
@@ -376,7 +376,7 @@ namespace SQLiteSugar
         /// <typeparam name="T">表实体类型</typeparam>
         /// <param name="queryable">查询对象</param>
         /// <returns>T</returns>
-        public static T Single<T>(this  Queryable<T> queryable)
+        public static T Single<T>(this Queryable<T> queryable)
         {
             if (queryable.OrderByValue.IsNullOrEmpty())
             {
@@ -393,7 +393,7 @@ namespace SQLiteSugar
         /// <typeparam name="T">表实体类型</typeparam>
         /// <param name="queryable">查询对象</param>
         /// <returns>T</returns>
-        public static T SingleOrDefault<T>(this  Queryable<T> queryable)
+        public static T SingleOrDefault<T>(this Queryable<T> queryable)
         {
             if (queryable.OrderByValue.IsNullOrEmpty())
             {
@@ -416,7 +416,7 @@ namespace SQLiteSugar
         /// <param name="queryable">查询对象</param>
         /// <param name="expression">表达式条件</param>
         /// <returns>T</returns>
-        public static T Single<T>(this  Queryable<T> queryable, Expression<Func<T, bool>> expression)
+        public static T Single<T>(this Queryable<T> queryable, Expression<Func<T, bool>> expression)
         {
             var type = queryable.Type;
             queryable.WhereIndex = queryable.WhereIndex + 100;
@@ -434,7 +434,7 @@ namespace SQLiteSugar
         /// <param name="queryable">查询对象</param>
         /// <param name="expression">表达式条件</param>
         /// <returns>T</returns>
-        public static T SingleOrDefault<T>(this  Queryable<T> queryable, Expression<Func<T, bool>> expression)
+        public static T SingleOrDefault<T>(this Queryable<T> queryable, Expression<Func<T, bool>> expression)
         {
             var type = queryable.Type;
             queryable.WhereIndex = queryable.WhereIndex + 100;
@@ -451,7 +451,7 @@ namespace SQLiteSugar
         /// <typeparam name="T">表实体类型</typeparam>
         /// <param name="queryable">查询对象</param>
         /// <returns>T</returns>
-        public static T First<T>(this  Queryable<T> queryable)
+        public static T First<T>(this Queryable<T> queryable)
         {
             if (queryable.OrderByValue.IsNullOrEmpty())
             {
@@ -469,7 +469,7 @@ namespace SQLiteSugar
         /// <typeparam name="T">表实体类型</typeparam>
         /// <param name="queryable">查询对象</param>
         /// <returns>T</returns>
-        public static T FirstOrDefault<T>(this  Queryable<T> queryable)
+        public static T FirstOrDefault<T>(this Queryable<T> queryable)
         {
             if (queryable.OrderByValue.IsNullOrEmpty())
             {
@@ -492,7 +492,7 @@ namespace SQLiteSugar
         /// <param name="queryable">查询对象</param>
         /// <param name="expression">表达式条件</param>
         /// <returns>T</returns>
-        public static T First<T>(this  Queryable<T> queryable, Expression<Func<T, bool>> expression)
+        public static T First<T>(this Queryable<T> queryable, Expression<Func<T, bool>> expression)
         {
 
             var type = queryable.Type;
@@ -511,7 +511,7 @@ namespace SQLiteSugar
         /// <param name="queryable">查询对象</param>
         /// <param name="expression">表达式条件</param>
         /// <returns>T</returns>
-        public static T FirstOrDefault<T>(this  Queryable<T> queryable, Expression<Func<T, bool>> expression)
+        public static T FirstOrDefault<T>(this Queryable<T> queryable, Expression<Func<T, bool>> expression)
         {
 
             var type = queryable.Type;
@@ -531,7 +531,7 @@ namespace SQLiteSugar
         /// <param name="queryable">查询对象</param>
         /// <param name="expression">表达式条件</param>
         /// <returns>count>0返回true</returns>
-        public static bool Any<T>(this  Queryable<T> queryable, Expression<Func<T, bool>> expression)
+        public static bool Any<T>(this Queryable<T> queryable, Expression<Func<T, bool>> expression)
         {
             var type = queryable.Type;
             queryable.WhereIndex = queryable.WhereIndex + 100;
@@ -548,7 +548,7 @@ namespace SQLiteSugar
         /// <typeparam name="T">表实体类型</typeparam>
         /// <param name="queryable">查询对象</param>
         /// <returns>count>0返回true</returns>
-        public static bool Any<T>(this  Queryable<T> queryable)
+        public static bool Any<T>(this Queryable<T> queryable)
         {
             return queryable.Count() > 0;
         }
@@ -578,7 +578,7 @@ namespace SQLiteSugar
                 GroupByValue = queryable.GroupByValue,
                 JoinTableValue = queryable.JoinTableValue
             };
-            ResolveSelect.GetResult<TResult>(expStr, reval,expression);
+            ResolveSelect.GetResult<TResult>(expStr, reval, expression);
             return reval;
         }
 
@@ -608,7 +608,7 @@ namespace SQLiteSugar
                 GroupByValue = queryable.GroupByValue,
                 JoinTableValue = queryable.JoinTableValue
             };
-            ResolveSelect.GetResult<TResult>(expStr, reval,expression);
+            ResolveSelect.GetResult<TResult>(expStr, reval, expression);
             return reval;
         }
 
@@ -639,7 +639,7 @@ namespace SQLiteSugar
                 GroupByValue = queryable.GroupByValue,
                 JoinTableValue = queryable.JoinTableValue
             };
-            ResolveSelect.GetResult<TResult>(expStr, reval,expression);
+            ResolveSelect.GetResult<TResult>(expStr, reval, expression);
             return reval;
         }
 
@@ -671,7 +671,7 @@ namespace SQLiteSugar
                 GroupByValue = queryable.GroupByValue,
                 JoinTableValue = queryable.JoinTableValue
             };
-            ResolveSelect.GetResult<TResult>(expStr, reval,expression);
+            ResolveSelect.GetResult<TResult>(expStr, reval, expression);
             return reval;
         }
 
@@ -701,12 +701,12 @@ namespace SQLiteSugar
             };
             if (queryable.JoinTableValue.IsValuable())
             {
-                ResolveSelect.GetResult<TResult>(expStr, reval,expression);
+                ResolveSelect.GetResult<TResult>(expStr, reval, expression);
             }
             else
             {
                 reval.SelectValue = expStr;
-                ResolveSelect.GetResult<TResult>(reval,expression);
+                ResolveSelect.GetResult<TResult>(reval, expression);
             }
             return reval;
         }
@@ -890,6 +890,22 @@ namespace SQLiteSugar
         }
 
         /// <summary>
+        /// 将Queryable转换为分页后的List&lt;T&gt;集合
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <param name="pageCount">pageCount无需赋值，函数执行完自动赋值</param>
+        /// <returns>T的集合</returns>
+        public static List<T> ToPageList<T>(this Queryable<T> queryable, int pageIndex, int pageSize, ref int pageCount)
+        {
+            var reval = queryable.ToPageList(pageIndex, pageSize);
+            pageCount = queryable.Count();
+            return reval;
+        }
+
+        /// <summary>
         /// 将Queryable转换为Json
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
@@ -898,6 +914,46 @@ namespace SQLiteSugar
         public static string ToJson<T>(this Queryable<T> queryable)
         {
             return JsonConverter.DataTableToJson(ToDataTable<T>(queryable), queryable.DB.SerializerDateFormat);
+        }
+
+
+        /// <summary>
+        /// 将Queryable转换为分页后的Json
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <returns>Json</returns>
+        public static string ToJsonPage<T>(this Queryable<T> queryable, int pageIndex, int pageSize)
+        {
+            if (queryable.OrderByValue.IsNullOrEmpty())
+            {
+                throw new Exception("分页必需使用.Order排序");
+            }
+            if (pageIndex == 0)
+                pageIndex = 1;
+            queryable.Skip = (pageIndex - 1) * pageSize;
+            queryable.Take = pageSize;
+            var reval = queryable.ToJson();
+            queryable = null;
+            return reval;
+        }
+
+        /// <summary>
+        /// 将Queryable转换为分页后的Json
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <param name="pageCount">pageCount无需赋值，函数执行完自动赋值</param>
+        /// <returns>Json</returns>
+        public static string ToJsonPage<T>(this Queryable<T> queryable, int pageIndex, int pageSize, ref int pageCount)
+        {
+            var reval = queryable.ToJsonPage(pageIndex, pageSize);
+            pageCount = queryable.Count();
+            return reval;
         }
 
         /// <summary>
@@ -927,6 +983,46 @@ namespace SQLiteSugar
         }
 
         /// <summary>
+        /// 将Queryable转换为分页后的Dynamic
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <returns>Dynamic</returns>
+        public static dynamic ToDynamicPage<T>(this Queryable<T> queryable, int pageIndex, int pageSize)
+        {
+            if (queryable.OrderByValue.IsNullOrEmpty())
+            {
+                throw new Exception("分页必需使用.Order排序");
+            }
+            if (pageIndex == 0)
+                pageIndex = 1;
+            queryable.Skip = (pageIndex - 1) * pageSize;
+            queryable.Take = pageSize;
+            var reval = queryable.ToDynamic();
+            queryable = null;
+            return reval;
+        }
+
+        /// <summary>
+        /// 将Queryable转换为分页后的Dynamic
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <param name="pageCount">pageCount无需赋值，函数执行完自动赋值</param>
+        /// <returns>Dynamic</returns>
+        public static dynamic ToDynamicPage<T>(this Queryable<T> queryable, int pageIndex, int pageSize, ref int pageCount)
+        {
+            var reval = queryable.ToDynamicPage(pageIndex, pageSize);
+            pageCount = queryable.Count();
+            return reval;
+        }
+
+
+        /// <summary>
         /// 将Queryable转换为DataTable
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
@@ -940,6 +1036,48 @@ namespace SQLiteSugar
             sbSql = null;
             return dataTable;
         }
+
+        /// <summary>
+        /// 将Queryable转换为分页后的DataTable
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <returns>DataTable</returns>
+        public static DataTable ToDataTablePage<T>(this Queryable<T> queryable, int pageIndex, int pageSize)
+        {
+            if (queryable.OrderByValue.IsNullOrEmpty())
+            {
+                throw new Exception("分页必需使用.Order排序");
+            }
+            if (pageIndex == 0)
+                pageIndex = 1;
+            queryable.Skip = (pageIndex - 1) * pageSize;
+            queryable.Take = pageSize;
+            StringBuilder sbSql = SqlSugarTool.GetQueryableSql<T>(queryable);
+            var dataTable = queryable.DB.GetDataTable(sbSql.ToString(), queryable.Params.ToArray());
+            queryable = null;
+            sbSql = null;
+            return dataTable;
+        }
+
+        /// <summary>
+        /// 将Queryable转换为分页后的DataTable
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="queryable">查询对象</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">每页显示数量</param>
+        /// <param name="pageCount">pageCount无需赋值，函数执行完自动赋值</param>
+        /// <returns>DataTable</returns>
+        public static DataTable ToDataTablePage<T>(this Queryable<T> queryable, int pageIndex, int pageSize, ref int pageCount)
+        {
+            var reval = queryable.ToDataTablePage(pageIndex, pageSize);
+            pageCount = queryable.Count();
+            return reval;
+        }
+
 
         /// <summary>
         /// 将Queryable转换为分页后的List&lt;T&gt;集合
